@@ -23,7 +23,7 @@ jobs:
       run: dotnet build .\src\DumpExam\DumpExam.csproj --no-restore
     - name: Execute app to generate web content
       working-directory: .\src\DumpExam\bin\Debug\net5.0\
-      run: Start-Process -WorkingDirectory ".\src\DumpExam\bin\Debug\net5.0\" -FilePath ".\src\DumpExam\bin\Debug\net5.0\DumpExam.exe"
+      run: Start-Process -FilePath "DumpExam.exe"
     - name: Commit web content
       run: |
         git config --global user.name 'VanDng'
