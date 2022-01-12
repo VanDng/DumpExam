@@ -1,0 +1,54 @@
+<html>
+
+<head>
+    <title>AZ-204#3</title>
+
+	<script src="jquery-3.6.0.min.js"></script>
+    <script src="../jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#answerToggle").click(function () {
+                $("#answerContent").toggle();
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <p>
+        <a href="../index.html">Home</a>
+    </p>
+    <p>
+        <a href="https://github.com/VanDng/DumpExam/issues/3" target="_blank">Open On Github</a>
+    </p>
+    <p>
+        <a href="2.html">Previous</a>
+    </p>
+    <p>
+        <a href="3.html">#3</a>
+    </p>
+    <p>
+        <a href="3.html">Next</a>
+    </p>
+
+    <p>Question</p>
+    <p>Question3</p>
+
+
+    <p>Answer</p>
+    <button id="answerToggle">Show/Hide</button>
+    <div id="answerContent" style="display:none"><p>Answer3</p>
+</div>
+
+    <p>Discussion</p>
+    <script src="https://utteranc.es/client.js"
+    repo="VanDng/DumpExam"
+    issue-term="title"
+    theme="github-light"
+    crossorigin="anonymous"
+    async>
+</script>
+</body>
+
+</html>
