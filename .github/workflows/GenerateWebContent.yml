@@ -4,7 +4,7 @@ on:
   push:
     branches: [ main ]
   issues:
-    types: [opened, edited, labeled, unlabeled, deleted, closed, reopened]
+    types: [opened, edited, closed, reopened]
 
 jobs:
   build:
