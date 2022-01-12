@@ -26,17 +26,34 @@ namespace DumpExam
 
         static void Main(string[] args)
         {
-            var queryResponse = GetIssues().Result;
-
-            GenerateContent(queryResponse.items);
+            Az204();
         }
 
-        static async Task<QueryResponse> GetIssues()
+        static void Az204()
+        {
+            BuildWebContent("AZ-204");           
+        }
+
+        static string BuildQuery(string examLabel)
+        {
+            return string.Format("https://api.github.com/search/issues?q=author:VanDng+label:ExamQuestion+label:{0}+repo:VanDng/DumpExam&sort=created&order=asc", examLabel);
+        }
+
+        static void BuildWebContent(string examLabel)
+        {
+            var query = BuildQuery(examLabel);
+
+            var queryResponse = GetIssues(query).Result;
+
+            GenerateHtml(queryResponse.items, examLabel);
+        }
+
+        static async Task<QueryResponse> GetIssues(string query)
         {
             HttpClient httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.UserAgent.TryParseAdd("request");
 
-            var response = await httpClient.GetAsync("https://api.github.com/search/issues?q=author:VanDng+label:ExamQuestion+repo:VanDng/DumpExam&sort=created&order=asc");
+            var response = await httpClient.GetAsync(query);
 
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
             {
@@ -51,13 +68,16 @@ namespace DumpExam
             }
         }
 
-        static void GenerateContent(Issue[] issues)
+        static void GenerateHtml(Issue[] issues, string exam)
         {
             var docsDir          = Path.Combine("..", "..", "..", "..", "..", "docs");
-            var questionsDir     = Path.Combine(docsDir, "questions");
+            var questionsDir     = Path.Combine(docsDir, exam);
             var questionTemplate = File.ReadAllText(Path.Combine(docsDir, "question_template.html"));
 
-            Directory.Delete(questionsDir, true);
+            if (Directory.Exists(questionsDir))
+            {
+                Directory.Delete(questionsDir, true);
+            }
             Directory.CreateDirectory(questionsDir);
 
             for(int issueIdx = 0; issueIdx < issues.Length; issueIdx++)
@@ -106,7 +126,7 @@ namespace DumpExam
                 //
                 // Title
                 //
-                var title = string.Format("#{0}", currentQuestionId);
+                var title = string.Format("{0}#{1}", exam.ToUpper(), currentQuestionId);
 
                 //
                 // Complete question content
