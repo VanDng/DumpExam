@@ -3,6 +3,7 @@ using System;
 using System.IO;
 using System.Net.Http;
 using System.Text.Json;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace DumpExam
@@ -26,6 +27,9 @@ namespace DumpExam
 
         static void Main(string[] args)
         {
+            var currentDir = Directory.GetCurrentDirectory();
+            Console.WriteLine(string.Format("Current working directory '{0}'", currentDir));
+
             Az204();
         }
 
@@ -76,11 +80,18 @@ namespace DumpExam
 
             if (Directory.Exists(questionsDir))
             {
+                Console.WriteLine(string.Format("Delete folder '{0}'", questionsDir));
                 Directory.Delete(questionsDir, true);
+                Thread.Sleep(1000);
             }
-            Directory.CreateDirectory(questionsDir);
 
-            for(int issueIdx = 0; issueIdx < issues.Length; issueIdx++)
+            Console.WriteLine(string.Format("Create folder '{0}'", questionsDir));
+            Directory.CreateDirectory(questionsDir);
+            Thread.Sleep(1000);
+
+            Console.WriteLine(string.Format("There will be {0} questions", issues.Length));
+
+            for (int issueIdx = 0; issueIdx < issues.Length; issueIdx++)
             {
                 var issue = issues[issueIdx];
 
@@ -143,6 +154,8 @@ namespace DumpExam
                 var questionFilePath = string.Format("{0}.html", Path.Combine(questionsDir, currentQuestionId.ToString()));
 
                 File.WriteAllText(questionFilePath, completeQuestionContent);
+
+                Console.WriteLine(string.Format("{0}: Question #{1} created", exam, currentQuestionId));
             }
         }
     }
