@@ -1,0 +1,52 @@
+﻿<html>
+
+<head>
+    <title>[Title]</title>
+
+	<script src="jquery-3.6.0.min.js"></script>
+    <script src="../jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#answerToggle").click(function () {
+                $("#answerContent").toggle();
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <p>
+        <a href="./index.html">Home</a>
+    </p>
+    <p>
+        <a href="[GithubUrl]" target="_blank">Open On Github</a>
+    </p>
+    <p>
+        <a href="[PreviousQuestionId].html">Previous</a>
+    </p>
+    <p>
+        <a href="[CurrentQuestionId].html">#[CurrentQuestionId]</a>
+    </p>
+    <p>
+        <a href="[NextQuestionId].html">Next</a>
+    </p>
+
+    <p>Question</p>
+    [QuestionContent]
+
+    <p>Answer</p>
+    <button id="answerToggle">Show/Hide</button>
+    <div id="answerContent" style="display:none">[AnswerContent]</div>
+
+    <p>Discussion</p>
+    <script src="https://utteranc.es/client.js"
+    repo="VanDng/DumpExam"
+    issue-term="title"
+    theme="github-light"
+    crossorigin="anonymous"
+    async>
+</script>
+</body>
+
+</html>
