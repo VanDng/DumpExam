@@ -4,7 +4,7 @@ on:
   push:
     branches: [ main ]
   issues:
-    types: [opened, edited, labeled, unlabeled, deleted, closed, reopened]
+    types: [opened, edited, closed, reopened]
 
 jobs:
   build:
@@ -22,7 +22,8 @@ jobs:
     - name: Build
       run: dotnet build .\src\DumpExam\DumpExam.csproj --no-restore
     - name: Execute app to generate web content
-      run: Start-Process -WorkingDirectory ".\src\DumpExam\bin\Debug\net5.0\" -FilePath ".\src\DumpExam\bin\Debug\net5.0\DumpExam.exe"
+      working-directory: .\src\DumpExam\bin\Debug\net5.0
+      run: Start-Process -FilePath "DumpExam.exe"
     - name: Commit web content
       run: |
         git config --global user.name 'VanDng'
