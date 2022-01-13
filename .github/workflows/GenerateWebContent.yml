@@ -37,9 +37,9 @@ jobs:
     - uses: actions/checkout@v2
       with:
         ref: WebContent
-    - name: Merge from Main
+    - name: Merge from origin/main
       run: |
         git config --global user.name 'VanDng'
         git config --global user.email 'VanDng@users.noreply.github.com'
-        git merge -X theirs main
+        git merge -X theirs origin/main
         git push
