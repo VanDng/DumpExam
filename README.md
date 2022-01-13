@@ -6,5 +6,5 @@ It is a **free** collection of exam dumps with reviewed and selective content. T
 ## Technology
 - It is a static website.
 - Exam dumps are stored as issues within this repository.
-- Discussion on each exam dump is linked with issue's discussion as well.
+- Discussion on each exam dump is linked with issue's discussion as well. Thanks to [utterances](https://github.com/utterance/utterances).
 - CICD applied. Website's content will be rebuild automatically based on the issue's changes.
