@@ -153,7 +153,8 @@ namespace DumpExam
                                                               .Replace("[CurrentQuestionId]", currentQuestionId.ToString())
                                                               .Replace("[NextQuestionId]", nextQuestionId.ToString())
                                                               .Replace("[GithubUrl]", issue.html_url)
-                                                              .Replace("[Title]", title);
+                                                              .Replace("[Title]", title)
+                                                              .Replace("[TotalQuestionCount]", issues.Length.ToString());
 
                 var questionFilePath = string.Format("{0}.html", Path.Combine(questionsDir, currentQuestionId.ToString()));
 
