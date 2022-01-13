@@ -36,11 +36,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       with:
-        ref: WebContent
+        fetch-depth: 0
     - name: Merge from origin/main
       run: |
         git config --global user.name 'VanDng'
         git config --global user.email 'VanDng@users.noreply.github.com'
-        git fetch origin main
-        git merge -X theirs origin/main
+        git checkout WebContent
+        git merge -X theirs main
         git push
