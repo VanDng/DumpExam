@@ -10,4 +10,4 @@ It is a **free** collection of exam dumps with reviewed and selective content. T
 - CICD applied. Website's content will be rebuild automatically based on the issue's changes.
 
 ## Next
-[] Make the website beauty with CSS. Find a template somewhere or something.
+[ ] Make the website beauty with CSS. Find a template somewhere or something.
