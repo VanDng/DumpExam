@@ -7,10 +7,8 @@ on:
     types: [opened, edited, closed, reopened]
 
 jobs:
-  build:
-
+  Generate:
     runs-on: windows-latest
-
     steps:
     - uses: actions/checkout@v2
     - name: Setup .NET
@@ -30,4 +28,18 @@ jobs:
         git config --global user.email 'VanDng@users.noreply.github.com'
         git add -A -- .\docs
         git commit -m "[GitAction] Commit All Changes in the folder Docs" -- .\docs
+        git push
+        
+  Publish:
+    needs: Generate
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: WebContent
+    - name: Merge from Main
+      run: |
+        git config --global user.name 'VanDng'
+        git config --global user.email 'VanDng@users.noreply.github.com'
+        git merge -X theirs main
         git push
