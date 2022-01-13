@@ -45,6 +45,8 @@ namespace DumpExam
 
         static void BuildWebContent(string examLabel)
         {
+            Console.WriteLine(string.Format("Exam: {0}", examLabel));
+
             var query = BuildQuery(examLabel);
 
             var queryResponse = GetIssues(query).Result;
@@ -63,6 +65,8 @@ namespace DumpExam
             {
                 var responseString = await response.Content.ReadAsStringAsync();
                 var queryResponse = JsonSerializer.Deserialize<QueryResponse>(responseString);
+
+                Console.WriteLine(string.Format("Github query item count: {0}", queryResponse.items.Length));
 
                 return queryResponse;
             }
